@@ -1,0 +1,27 @@
+<style>
+.show_more,.show_less{display:block; color: #006fbb; text-decoration:underline;}
+.show_less_div{display:none;}
+</style>
+<script>
+  $(document).ready(function(){
+    $('.show_more').click(function(){
+    $(this).parent().siblings('.show_less_div').show();
+      $(this).parent().hide();
+    })
+        $('.show_less').click(function(){
+    $(this).parent().siblings('.show_more_div').show();
+      $(this).parent().hide();
+    })
+  })
+</script>
+
+
+     {% assign trunc = block.settings.logo-subtext | truncatewords:40 %}
+  <div class="show_more_div">
+                {{ trunc | truncatewords: 30 }} {% if trunc contains '..' %}
+                <span class="show_more">Show More</span>
+                {% endif %}
+              </div>
+              <div class="show_less_div">
+                {{ trunc }}<span class="show_less">Show Less</span>
+              </div>
